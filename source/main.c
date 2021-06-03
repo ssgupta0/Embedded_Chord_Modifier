@@ -41,7 +41,7 @@ void set_PWM1(double frequency) {
 void PWM_on1() {
     TCCR3A = (1 << COM3A0);
     TCCR3B = (1 << WGM32) | (1 << CS31) | (1 << CS30);
-    set_PWM(0);
+    set_PWM1(0);
 }
 
 void PWM_off1() {
@@ -75,7 +75,7 @@ void set_PWM2(double frequency) {
 void PWM_on2() {
     TCCR3A = (1 << COM3A0);
     TCCR3B = (1 << WGM32) | (1 << CS31) | (1 << CS30);
-    set_PWM(0);
+    set_PWM2(0);
 }
 
 void PWM_off2() {
@@ -109,7 +109,7 @@ void set_PWM3(double frequency) {
 void PWM_on3() {
     TCCR3A = (1 << COM3A0);
     TCCR3B = (1 << WGM32) | (1 << CS31) | (1 << CS30);
-    set_PWM(0);
+    set_PWM3(0);
 }
 
 void PWM_off3() {
@@ -142,7 +142,7 @@ void set_PWM4(double frequency) {
 void PWM_on4() {
     TCCR3A = (1 << COM3A0);
     TCCR3B = (1 << WGM32) | (1 << CS31) | (1 << CS30);
-    set_PWM(0);
+    set_PWM4(0);
 }
 
 void PWM_off4() {
