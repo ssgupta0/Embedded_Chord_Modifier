@@ -166,14 +166,16 @@ int main(void) {
 	PWM_on2();
     /* Insert your solution below */
     
-    	set_PWM1(440);
-	set_PWM2(554.37);
+    	
 	//set_PWM3(659.25);
 	//set_PWM4(880);
 		
     while (1) {
 	while(!TimerFlag);
 	    //note();
+	    set_PWM1(440);
+	    set_PWM2(554.37);
+
 	    TimerFlag = 0;
     }
     PWM_off1();
