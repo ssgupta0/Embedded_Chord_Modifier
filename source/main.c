@@ -162,7 +162,8 @@ int main(void) {
 	TimerOn();
 	
 		
-		PWM_on1();
+	PWM_on1();
+	PWM_on2();
     /* Insert your solution below */
     
     	set_PWM1(440);
@@ -176,5 +177,7 @@ int main(void) {
 	    TimerFlag = 0;
     }
     PWM_off1();
-    return 1;
+    PWM_off2();
+    
+	return 1;
 }
