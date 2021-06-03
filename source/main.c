@@ -167,7 +167,7 @@ int main(void) {
     /* Insert your solution below */
     
     	set_PWM1(440);
-	//set_PWM2(554.37);
+	set_PWM2(554.37);
 	//set_PWM3(659.25);
 	//set_PWM4(880);
 		
