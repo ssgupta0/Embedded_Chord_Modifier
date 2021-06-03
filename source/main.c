@@ -83,7 +83,7 @@ void PWM_off2() {
     TCCR3B = 0x00;
 }
 
-/*
+
 //PB4
 void set_PWM3(double frequency) {
     static double current_frequency;
@@ -107,8 +107,8 @@ void set_PWM3(double frequency) {
 }
 
 void PWM_on3() {
-    TCCR3A = (1 << COM3A0);
-    TCCR3B = (1 << WGM32) | (1 << CS31) | (1 << CS30);
+    TCCR0A = (1 << COM0B1);
+    TCCR0B = (1 << WGM32) | (1 << CS31) | (1 << CS30);
     set_PWM3(0);
 }
 
@@ -140,8 +140,8 @@ void set_PWM4(double frequency) {
 }
 
 void PWM_on4() {
-    TCCR3A = (1 << COM3A0);
-    TCCR3B = (1 << WGM32) | (1 << CS31) | (1 << CS30);
+    TCCR0A = (1 << COM0A0);
+    TCCR0B = (1 << WGM02) | (1 << CS01) | (1 << CS00);
     set_PWM4(0);
 }
 
@@ -167,15 +167,16 @@ int main(void) {
     /* Insert your solution below */
     
     	
-	//set_PWM3(659.25);
-	//set_PWM4(880);
+	
 		
     while (1) {
 	while(!TimerFlag);
 	    //note();
 	    set_PWM1(440);
 	    set_PWM2(554.37);
-
+	    set_PWM3(659.25);
+	    set_PWM4(880);
+	    
 	    TimerFlag = 0;
     }
     PWM_off1();
