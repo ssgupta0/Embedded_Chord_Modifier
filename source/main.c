@@ -43,7 +43,7 @@ void PWM_off0() {
 
 //----------------------
 
-//PB3
+//PD7
 void set_PWM1(double frequency) {
     static double current_frequency;
 
@@ -70,7 +70,7 @@ void PWM_off1() {
 
 //----------------------
 
-//PB3
+//PD5
 void set_PWM2(double frequency) {
     static double current_frequency;
 
@@ -97,7 +97,7 @@ void PWM_off2() {
 
 //----------------------
 
-//PB3
+//PB6
 void set_PWM3(double frequency) {
     static double current_frequency;
 
