@@ -39,7 +39,7 @@ double calcFreq(struct notes note) {
 	double f = freq[note.pos];
 	unsigned char i;
 	for(i=0;i<note.octave;i++) {
-		f*=2;
+		f+=f;
 	}
 	return f;
 }
