@@ -88,7 +88,7 @@ void PWM_off2() {
 void set_PWM3(double frequency) {
     static double current_frequency;
 
-    if (frequency != current_frequency) {
+//     if (frequency != current_frequency) {
 //         if(!frequency)
 //             TCCR3B &= 0x08;
 //         else
