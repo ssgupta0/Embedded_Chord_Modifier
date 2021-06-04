@@ -76,7 +76,7 @@ int main(void) {
 
 	struct notes n0;
 		n0.pos = 0;
-		n0.octave = 1;
+		n0.octave = 2;
 	struct notes n1;
 		n1.pos = 4;
 		n1.octave = 1;
