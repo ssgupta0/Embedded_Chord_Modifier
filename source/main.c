@@ -107,8 +107,8 @@ void set_PWM3(double frequency) {
 }
 
 void PWM_on3() {
-    TCCR0A = (1 << COM0B1);
-    TCCR0B = (1 << WGM32) | (1 << CS31) | (1 << CS30);
+    TCCR2A = (1 << COM2B1);
+    TCCR2B = (1 << WGM22) | (1 << CS21) | (1 << CS20);
     set_PWM3(0);
 }
 
@@ -163,10 +163,10 @@ int main(void) {
 // 	TimerOn();
 	
 		
-	//PWM_on1();
-	PWM_on2();
+	PWM_on1();
+	//PWM_on2();
 	PWM_on3();
-	//PWM_on4();
+	PWM_on4();
     /* Insert your solution below */
     
     	
