@@ -20,9 +20,9 @@ double freq[12] = {16.35, 17.32, 18.35, 19.45, 20.6, 21.83, 23.12, 24.5, 25.96, 
 
 
 struct notes {
-	unsigned char pos = 0;
-	unsigned char octave = 0;
-} note;
+	unsigned char pos;
+	unsigned char octave;
+} ;
 
 struct chords {
 	note note0;
@@ -33,7 +33,7 @@ struct chords {
 	unsigned char maj;
 // 	0, 1, 2, 3
 // 	maj, min, aug, dim	
-} chord;
+} ;
 
 double calcFreq(struct notes note) {
 	double f = freq[note.pos];
