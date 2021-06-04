@@ -32,7 +32,7 @@ void set_PWM1(double frequency) {
     if (frequency != current_frequency) {
             TCCR1B |= 0x03;
 	    
-            OCR1A = (short) (8000000 / (128 * frequency)) - 1;
+            OCR1A = (short) (8000000 / (128/2 * frequency)) - 1;
         
         TCNT1 = 0;
         current_frequency = frequency;
@@ -59,7 +59,7 @@ void set_PWM2(double frequency) {
     if (frequency != current_frequency) {
             TCCR2B |= 0x03;
 	    
-            OCR2A = (short) (8000000 / (128 * frequency)) - 1;
+            OCR2A = (short) (8000000 / (128/2 * frequency)) - 1;
         
         TCNT2 = 0;
         current_frequency = frequency;
