@@ -1,6 +1,6 @@
 /*	Author: lab
  *  Partner(s) Name: Shashvat Gupta
- *	Lab Section:
+ *	Lab Section: 025
  *	Assignment: Lab #  Exercise #
  *	Exercise Description: [optional - include for your own benefit]
  *
