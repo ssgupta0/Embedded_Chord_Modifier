@@ -123,9 +123,9 @@ void set_PWM4(double frequency) {
 
     if (frequency != current_frequency) {
         if(!frequency)
-            TCCR3B &= 0x08;
+            TCCR2B &= 0x08;
         else
-            TCCR3B |= 0x03;
+            TCCR2B |= 0x03;
 
         if(frequency < 0.954)
             OCR2B = 0xFFFF;
@@ -134,20 +134,20 @@ void set_PWM4(double frequency) {
         else
             OCR2B = (short) (8000000 / (128 * frequency)) - 1;
         
-        TCNT3 = 0;
+        TCNT2 = 0;
         current_frequency = frequency;
    }
 }
 
 void PWM_on4() {
-    TCCR0A = (1 << COM0A0);
-    TCCR0B = (1 << WGM02) | (1 << CS01) | (1 << CS00);
+    TCCR2A = (1 << COM2A0);
+    TCCR2B = (1 << WGM21) | (1 << CS21) | (1 << CS20);
     set_PWM4(0);
 }
 
 void PWM_off4() {
-    TCCR3A = 0x00;
-    TCCR3B = 0x00;
+    TCCR2A = 0x00;
+    TCCR2B = 0x00;
 }
 
 /**/
