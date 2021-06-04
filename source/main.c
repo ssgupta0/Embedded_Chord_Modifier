@@ -84,7 +84,7 @@ void set_PWM2(double frequency) {
    }
 }
 
-void PWM_on0() {
+void PWM_on2() {
     TCCR2A = (1 << COM2A0);
     TCCR2B = (1 << WGM22) | (1 << CS21) | (1 << CS20);
     set_PWM0(0);
