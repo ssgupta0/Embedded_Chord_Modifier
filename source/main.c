@@ -122,16 +122,16 @@ void set_PWM4(double frequency) {
     static double current_frequency;
 
     if (frequency != current_frequency) {
-        if(!frequency)
-            TCCR2B &= 0x08;
-        else
+//         if(!frequency)
+//             TCCR2B &= 0x08;
+//         else
             TCCR2B |= 0x03;
 
-        if(frequency < 0.954)
-            OCR2B = 0xFFFF;
-        else if (frequency > 31250)
-            OCR2B = 0x0000;
-        else
+//         if(frequency < 0.954)
+//             OCR2B = 0xFFFF;
+//         else if (frequency > 31250)
+//             OCR2B = 0x0000;
+//         else
             OCR2B = (short) (8000000 / (128 * frequency)) - 1;
         
         TCNT2 = 0;
@@ -159,8 +159,8 @@ int main(void) {
 	DDRB = 0xFF; PORTB = 0x00; 
 	DDRD = 0xFF; PORTD = 0x00; 
 	
-	TimerSet(100);
-	TimerOn();
+// 	TimerSet(100);
+// 	TimerOn();
 	
 		
 	PWM_on1();
@@ -173,14 +173,14 @@ int main(void) {
 	
 		
     while (1) {
-	while(!TimerFlag);
+// 	while(!TimerFlag);
 	    //note();
 	    set_PWM1(440);
 	    set_PWM2(554.37);
 	    set_PWM3(659.25);
 	    set_PWM4(880);
 	    
-	    TimerFlag = 0;
+// 	    TimerFlag = 0;
     }
   	PWM_off1();
    	PWM_off2();
