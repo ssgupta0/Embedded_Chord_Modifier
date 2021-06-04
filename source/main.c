@@ -38,7 +38,7 @@ struct chords {
 double calcFreq(struct notes note) {
 	double f = freq[note.pos];
 	unsigned char i;
-	for(i=1;i<note.octave;i++) {
+	for(i=0;i<note.octave;i++) {
 		f*=2;
 	}
 	return f;
