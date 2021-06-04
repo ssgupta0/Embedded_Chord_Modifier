@@ -45,10 +45,10 @@ double calcFreq(struct notes note) {
 }
 
 void setNotes(struct chords chord) {
-	set_PWM0(calcFreq(chords.note0));
-	set_PWM1(calcFreq(chords.note1));
-	set_PWM2(calcFreq(chords.note2));
-	set_PWM3(calcFreq(chords.note3));
+	set_PWM0(calcFreq(chord.note0));
+	set_PWM1(calcFreq(chord.note1));
+	set_PWM2(calcFreq(chord.note2));
+	set_PWM3(calcFreq(chord.note3));
 }
 
 
