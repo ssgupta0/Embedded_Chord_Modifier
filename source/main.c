@@ -14,9 +14,9 @@
 #include "simAVRHeader.h"
 #endif
 
-//array of freq for C0
+//array of freq for C1
 			//		C		C#	   D	  D#	 E	   F	  F#	 G	   G#	 A		A#	   B
-double freq[12] = {16.35, 17.32, 18.35, 19.45, 20.6, 21.83, 23.12, 24.5, 25.96, 27.5, 29.14, 30.87};
+double freq[12] = {32.7, 34.65, 36.71, 38.89, 41.2, 43.65, 46.25, 49.00, 51.91, 55.00, 58.27, 61.74};
 
 
 struct notes {
@@ -71,7 +71,7 @@ int main(void) {
 	PWM_on3();
     /* Insert your solution below */
 //  ------------------------
-// 	initialize C0maj Chord.
+// 	initialize C1maj Chord.
 //  ------------------------
 
 	struct notes n0;
