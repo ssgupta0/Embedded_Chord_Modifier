@@ -163,10 +163,10 @@ int main(void) {
 // 	TimerOn();
 	
 		
-	PWM_on1();
+	//PWM_on1();
 	PWM_on2();
 	PWM_on3();
-	PWM_on4();
+	//PWM_on4();
     /* Insert your solution below */
     
     	
