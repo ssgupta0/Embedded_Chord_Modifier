@@ -21,16 +21,16 @@ void set_PWM1(double frequency) {
     static double current_frequency;
 
     if (frequency != current_frequency) {
-        if(!frequency)
-            TCCR3B &= 0x08;
-        else
+//         if(!frequency)
+//             TCCR3B &= 0x08;
+//         else
             TCCR3B |= 0x03;
 
-        if(frequency < 0.954)
-            OCR3B = 0xFFFF;
-        else if (frequency > 31250)
-            OCR3B = 0x0000;
-        else
+//         if(frequency < 0.954)
+//             OCR3B = 0xFFFF;
+//         else if (frequency > 31250)
+//             OCR3B = 0x0000;
+//         else
             OCR3B = (short) (8000000 / (128 * frequency)) - 1;
         
         TCNT3 = 0;
@@ -89,19 +89,19 @@ void set_PWM3(double frequency) {
     static double current_frequency;
 
     if (frequency != current_frequency) {
-        if(!frequency)
-            TCCR3B &= 0x08;
-        else
+//         if(!frequency)
+//             TCCR3B &= 0x08;
+//         else
             TCCR3B |= 0x03;
 
-        if(frequency < 0.954)
-            OCR2A = 0xFFFF;
-        else if (frequency > 31250)
-            OCR2A = 0x0000;
-        else
+//         if(frequency < 0.954)
+//             OCR2A = 0xFFFF;
+//         else if (frequency > 31250)
+//             OCR2A = 0x0000;
+//         else
             OCR2A = (short) (8000000 / (128 * frequency)) - 1;
         
-        TCNT3 = 0;
+        TCNT2 = 0;
         current_frequency = frequency;
    }
 }
