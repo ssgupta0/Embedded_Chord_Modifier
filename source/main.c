@@ -25,10 +25,10 @@ struct notes {
 } ;
 
 struct chords {
-	notes note0;
-	notes note1;
-	notes note2;
-	notes note3;
+	struct notes note0;
+	struct notes note1;
+	struct notes note2;
+	struct notes note3;
 	
 	unsigned char maj;
 // 	0, 1, 2, 3
