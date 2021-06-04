@@ -14,7 +14,42 @@
 #include "simAVRHeader.h"
 #endif
 
+//array of freq for C0
+			//		C		C#	   D	  D#	 E	   F	  F#	 G	   G#	 A		A#	   B
+double freq[12] = {16.35, 17.32, 18.35, 19.45, 20.6, 21.83, 23.12, 24.5, 25.96, 27.5, 29.14, 30.87}
 
+
+struct notes {
+	unsigned char pos = 0;
+	unsigned char octave = 0;
+} note;
+
+struct chords {
+	note note0;
+	note note1;
+	note note2;
+	note note3;
+	
+	unsigned char maj;
+// 	0, 1, 2, 3
+// 	maj, min, aug, dim	
+} chord;
+
+double calcFreq(struct notes note) {
+	double f = freq[note.pos];
+	unsigned char i;
+	for(i=0;i<note.octave;i++) {
+		f*=2;
+	}
+	return f;
+}
+
+void setNotes(struct chords chord) {
+	set_PWM0(calcFreq(chords.note0));
+	set_PWM1(calcFreq(chords.note1));
+	set_PWM2(calcFreq(chords.note2));
+	set_PWM3(calcFreq(chords.note3));
+}
 
 
 /**/
@@ -35,8 +70,25 @@ int main(void) {
 	PWM_on2();
 	PWM_on3();
     /* Insert your solution below */
-    
-    	
+//  ------------------------
+// 	initialize C0maj Chord.
+//  ------------------------
+
+	struct notes n0;
+	struct notes n1;
+		n1.pos = 4;
+	struct notes n2;
+		n2.pos = 7;
+	struct notes n3;
+		n3.octave=1;
+	
+	struct chords chord;
+		chord.note0 = n0;
+		chord.note1 = n1;
+		chord.note2 = n2;
+		chord.note3 = n3;
+	
+	setNotes(chord);
 	
 		
     while (1) {
