@@ -165,6 +165,8 @@ int main(void) {
 		
 	PWM_on1();
 	PWM_on2();
+	PWM_on3();
+	PWM_on4();
     /* Insert your solution below */
     
     	
@@ -180,8 +182,10 @@ int main(void) {
 	    
 	    TimerFlag = 0;
     }
-    PWM_off1();
-    PWM_off2();
+  	PWM_off1();
+   	PWM_off2();
+    	PWM_off3();
+   	PWM_off4();
     
 	return 1;
 }
