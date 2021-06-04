@@ -94,10 +94,10 @@ int main(void) {
     while (1) {
 // 	while(!TimerFlag);
 	    //note();
-	    set_PWM0(440);
-	    set_PWM1(554.37);
-	    set_PWM2(659.25);
-	    set_PWM3(880);
+// 	    set_PWM0(440);
+// 	    set_PWM1(554.37);
+// 	    set_PWM2(659.25);
+// 	    set_PWM3(880);
 	    
 // 	    TimerFlag = 0;
     }
