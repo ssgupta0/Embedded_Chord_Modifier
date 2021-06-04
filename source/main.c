@@ -117,7 +117,7 @@ void PWM_off3() {
     TCCR3B = 0x00;
 }
 
-//PB3
+//PD6
 void set_PWM4(double frequency) {
     static double current_frequency;
 
