@@ -103,3 +103,15 @@ void PWM_off3() {
     TCCR3A = 0x00;
     TCCR3B = 0x00;
 }
+
+//------------------------------------------------------------------------------------
+//a2D
+
+void A2D_init() {
+      ADCSRA |= (1 << ADEN) | (1 << ADSC) | (1 << ADATE);
+    // ADEN: Enables analog-to-digital conversion
+    // ADSC: Starts analog-to-digital conversion
+    // ADATE: Enables auto-triggering, allowing for constant
+    //        analog to digital conversions.
+}
+
