@@ -98,7 +98,7 @@ int main(void) {
 //  ------------------------
 
 	struct notes n0;
-		n0.pos = 5;
+		n0.pos = 0;
 		n0.octave = 1;
 	struct notes n1;
 		n1.pos = 4;
@@ -130,11 +130,12 @@ int main(void) {
     while (1) {
 		while(!TimerFlag);
 		if((~PINA&0x01)==0x01) {
-			noteInc(chord, 5);
+			//noteInc(chord, 5);
+			chord.note0.pos=5;
 			PORTB |= 0x01;
 		}
 		else if((~PINA&0x02)==0x02) {
-			noteDec(chord, 5);
+			chord.note0.pos=0;
 			PORTB &= 0xFE;
 		}
 		
