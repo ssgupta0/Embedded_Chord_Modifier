@@ -131,7 +131,7 @@ int main(void) {
     while (1) {
 		while(!TimerFlag);
 		if((~PINA&0x01)==0x01) {
-			noteInc(chord, 9);
+			noteInc(chord, 5);
 			//chord.note3.pos=8;
 			PORTB |= 0x01;
 		}
