@@ -84,6 +84,8 @@ int main(void) {
 	TimerSet(1000);
 	TimerOn();
 	
+	while(~PINA==0x00) {PORTB |= 0x01;};	
+
 		
 	PWM_on0();
 	PWM_on1();
@@ -121,7 +123,6 @@ int main(void) {
 	
 	setNotes(chord);
 	
-	while(~PINA==0x00) {PORTB |= 0x01;};	
     while (1) {
 		while(!TimerFlag);
 		if(~PINA==0x01) {
