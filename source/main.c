@@ -126,9 +126,11 @@ int main(void) {
 		while(!TimerFlag);
 		if(~PINA==0x01) {
 			noteInc(chord, 5);
+			PORTB |= 0x01;
 		}
 		else if(~PINA==0x02) {
 			noteDec(chord, 5);
+			PORTB &= 0xFE;
 		}
 		
 		setNotes(chord);
@@ -140,7 +142,7 @@ int main(void) {
 	
   	PWM_off0();
    	PWM_off1();
-    PWM_off2();
+    	PWM_off2();
    	PWM_off3();
     
 	return 1;
