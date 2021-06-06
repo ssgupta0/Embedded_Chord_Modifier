@@ -54,26 +54,24 @@ void noteDec(struct chords chord, unsigned char dec) {
 
 
 
-double calcFreq(struct notes note) {
-	double f = freq[note.pos%12];
+double calcFreq(struct notes *note) {
+	double f = freq[(*note).pos%12];
 	unsigned char i;
-	while(note.pos>=12) {
-		note.octave++;
-		note.pos-=12;
-		PORTB&=0xFE;
-		PORTB|=0x01;
+	while((*note).pos>=12) {
+		(*note).octave++;
+		(*note).pos-=12;
 	}
-	for(i=0;i<note.octave;i++) {
+	for(i=0;i<(*note).octave;i++) {
 		f+=f;
 	}
 	return f;
 }
 
 void setNotes(struct chords chord) {
-	set_PWM0(calcFreq(chord.note0));
-	set_PWM1(calcFreq(chord.note1));
-	set_PWM2(calcFreq(chord.note2));
-	set_PWM3(calcFreq(chord.note3));
+	set_PWM0(calcFreq(&(chord.note0)));
+	set_PWM1(calcFreq(&(chord.note1)));
+	set_PWM2(calcFreq(&(chord.note2)));
+	set_PWM3(calcFreq(&(chord.note3)));
 }
 
 
