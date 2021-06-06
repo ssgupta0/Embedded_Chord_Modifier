@@ -35,12 +35,14 @@ struct chords {
 // 	maj, min, aug, dim	
 } ;
 
-void noteInc(struct chords chord, unsigned char inc) {
-	chord.note0.pos+=inc;	
-	chord.note1.pos+=inc;	
-	chord.note2.pos+=inc;	
-	chord.note3.pos=inc;
+void noteInc(struct chords *chord, unsigned char inc) {
+	(*chord).note0.pos+=inc;	
+	(*chord).note1.pos+=inc;	
+	(*chord).note2.pos+=inc;	
+	(*chord).note3.pos+=inc;
 	//TODO FIX +=
+	
+	return;
 }
 
 void noteDec(struct chords chord, unsigned char dec) {
@@ -107,12 +109,6 @@ int main(void) {
 	struct notes n2;
 		n2.pos = 7;
 		n2.octave = 1;
-// 	struct notes n1;
-// 		n1.pos = 0;
-// 		n1.octave = 1;
-// 	struct notes n2;
-// 		n2.pos = 0;
-// 		n2.octave = 1;
 	struct notes n3;
 		n3.pos = 0;
 		n3.octave=n0.octave+1;
@@ -131,7 +127,7 @@ int main(void) {
     while (1) {
 		while(!TimerFlag);
 		if((~PINA&0x01)==0x01) {
-			noteInc(chord, 5);
+			noteInc(&chord, 5);
 			//chord.note3.pos=8;
 			PORTB |= 0x01;
 		}
