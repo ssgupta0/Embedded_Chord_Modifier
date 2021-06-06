@@ -84,7 +84,7 @@ int main(void) {
 	TimerSet(1000);
 	TimerOn();
 	
-	while(1);	
+	while((~PINA&0x01)!=0x01);
 
 		
 	PWM_on0();
