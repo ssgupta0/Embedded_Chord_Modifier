@@ -57,6 +57,8 @@ double calcFreq(struct notes note) {
 	while(note.pos>=12) {
 		note.octave++;
 		note.pos-=12;
+		PORTB&=0xFE;
+		PORTB|=0x01;
 	}
 	for(i=0;i<note.octave;i++) {
 		f+=f;
@@ -81,8 +83,7 @@ int main(void) {
 	DDRB = 0x48; PORTB = 0x00; 
 	DDRD = 0xA0; PORTD = 0x00; 
 	
-	TimerSet(1000);
-	TimerOn();
+
 	
 	while((~PINA&0x01)!=0x01);
 
@@ -122,6 +123,9 @@ int main(void) {
 		chord.note3 = n3;
 	
 	setNotes(chord);
+	
+	TimerSet(1000);
+	TimerOn();
 	
     while (1) {
 		while(!TimerFlag);
