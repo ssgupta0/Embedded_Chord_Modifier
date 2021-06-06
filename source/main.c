@@ -78,13 +78,13 @@ void setNotes(struct chords chord) {
 int main(void) {
     /* Insert DDR and PORT initializations */
 	DDRA = 0x00; PORTA = 0xFF;	
-	DDRB = 0x44; PORTB = 0x00; 
-	DDRD = 0x90; PORTD = 0x00; 
+	DDRB = 0x48; PORTB = 0x00; 
+	DDRD = 0xA0; PORTD = 0x00; 
 	
 	TimerSet(1000);
 	TimerOn();
 	
-	while(~PINA==0x00) {PORTB |= 0x01;};	
+	while(1);	
 
 		
 	PWM_on0();
