@@ -36,7 +36,8 @@ struct chords {
 } ;
 
 void noteInc(struct chords chord, unsigned char inc) {
-	chord.note0.pos+=inc;	
+	//chord.note0.pos+=inc;	
+	chord.note0.pos=inc;	
 	chord.note1.pos+=inc;	
 	chord.note2.pos+=inc;	
 	chord.note3.pos+=inc;
