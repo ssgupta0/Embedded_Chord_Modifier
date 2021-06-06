@@ -125,11 +125,11 @@ int main(void) {
 	
     while (1) {
 		while(!TimerFlag);
-		if(~PINA==0x01) {
+		if((~PINA&0x01)==0x01) {
 			noteInc(chord, 5);
 			PORTB |= 0x01;
 		}
-		else if(~PINA==0x02) {
+		else if((~PINA&0x02)==0x02) {
 			noteDec(chord, 5);
 			PORTB &= 0xFE;
 		}
