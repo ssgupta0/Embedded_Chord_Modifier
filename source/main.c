@@ -35,9 +35,29 @@ struct chords {
 // 	maj, min, aug, dim	
 } ;
 
+void noteInc(struct chords chord, unsigned char inc) {
+	chord.note0.pos+=inc;	
+	chord.note1.pos+=inc;	
+	chord.note2.pos+=inc;	
+	chord.note3.pos+=inc;
+}
+
+void noteDec(struct chords chord, unsigned char dec) {
+	chord.note0.pos+=dec;	
+	chord.note1.pos+=dec;	
+	chord.note2.pos+=dec;	
+	chord.note3.pos+=dec;
+}
+
+
+
 double calcFreq(struct notes note) {
-	double f = freq[note.pos];
+	double f = freq[note.pos%12];
 	unsigned char i;
+	while(note.pos>=12) {
+		note.octave++;
+		note.pos-=12;
+	}
 	for(i=0;i<note.octave;i++) {
 		f+=f;
 	}
@@ -57,12 +77,12 @@ void setNotes(struct chords chord) {
 
 int main(void) {
     /* Insert DDR and PORT initializations */
-	//DDRA = 0x00; PORTA = 0xFF;	
+	DDRA = 0x00; PORTA = 0xFF;	
 	DDRB = 0xFF; PORTB = 0x00; 
 	DDRD = 0xFF; PORTD = 0x00; 
 	
-// 	TimerSet(100);
-// 	TimerOn();
+	TimerSet(1000);
+	TimerOn();
 	
 		
 	PWM_on0();
@@ -77,18 +97,18 @@ int main(void) {
 	struct notes n0;
 		n0.pos = 0;
 		n0.octave = 1;
-// 	struct notes n1;
-// 		n1.pos = 4;
-// 		n1.octave = 1;
-// 	struct notes n2;
-// 		n2.pos = 7;
-// 		n2.octave = 1;
 	struct notes n1;
-		n1.pos = 0;
+		n1.pos = 4;
 		n1.octave = 1;
 	struct notes n2;
-		n2.pos = 0;
+		n2.pos = 7;
 		n2.octave = 1;
+// 	struct notes n1;
+// 		n1.pos = 0;
+// 		n1.octave = 1;
+// 	struct notes n2;
+// 		n2.pos = 0;
+// 		n2.octave = 1;
 	struct notes n3;
 		n3.pos = 0;
 		n3.octave=n0.octave+1;
@@ -103,18 +123,24 @@ int main(void) {
 	
 		
     while (1) {
-// 	while(!TimerFlag);
-	    //note();
-// 	    set_PWM0(440);
-// 	    set_PWM1(554.37);
-// 	    set_PWM2(659.25);
-// 	    set_PWM3(880);
-	    
-// 	    TimerFlag = 0;
+		while(!TimerFlag);
+		if(~PINA==0x01) {
+			noteInc(chord, 5);
+		}
+		else if(~PINA==0x02) {
+			noteDec(chord, 5);
+		}
+		
+		setNotes(chord);
+		
+		TimerFlag = 0;
     }
+	
+	
+	
   	PWM_off0();
    	PWM_off1();
-    	PWM_off2();
+    PWM_off2();
    	PWM_off3();
     
 	return 1;
