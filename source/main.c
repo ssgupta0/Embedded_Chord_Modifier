@@ -90,8 +90,8 @@ void setNotes(struct chords chord) {
 enum states {init, inc, dec, reset, wait, decW, incW} state;
 
 void SM(struct chords *chord) {
-	unsigned char joy = ~(ADC/4);
-	
+	unsigned char joy = (ADC/4);
+	joy &= 0xC0;
 	switch(state) {
 	
 		case init:
@@ -99,7 +99,7 @@ void SM(struct chords *chord) {
 			break;
 			
 		case wait:
-			if(joy==1) {
+			if(joy == 0x80) {
 				state = inc;	
 			}
 			else if (joy<256) {
@@ -117,7 +117,7 @@ void SM(struct chords *chord) {
 			break;
 			
 		case incW:
-			if(joy>120&&joy<256) {
+			if(joy == 0x80) {
 				state = incW;	
 			}
 			else {
