@@ -101,7 +101,7 @@ void SM(struct chords *chord) {
 // 		return;
 // 	}
 // 	oldJoy=joy;
-	unsigned char tmpA = ((PINA&0xC0));
+	unsigned char tmpA = ((~PINA)&0xC0));
 	switch(state) {
 	
 		case init:
@@ -109,7 +109,10 @@ void SM(struct chords *chord) {
 			break;
 			
 		case wait:
-			if(tmpA==0x80) {
+			if((~PINA)&0x04 == 0x04) {
+				state=reset;	
+			}
+			else if(tmpA==0x80) {
 				state = wait;
 			}
 			else if (tmpA==0x90) {
@@ -145,6 +148,7 @@ void SM(struct chords *chord) {
 			}
 			break;
 			
+		case reset:
 		default:
 			state = init;
 			break;
@@ -152,7 +156,7 @@ void SM(struct chords *chord) {
 	
 	
 	switch(state) {
-	
+		case reset:
 		case init:
 			(*chord).note0.pos=0;
 			(*chord).note1.pos=4;
