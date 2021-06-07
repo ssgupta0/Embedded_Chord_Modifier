@@ -101,7 +101,7 @@ void SM(struct chords *chord) {
 // 		return;
 // 	}
 // 	oldJoy=joy;
-	unsigned char tmpA = ((~PINA)&0xC0));
+	unsigned char tmpA = ((~PINA)&0xC0);
 	switch(state) {
 	
 		case init:
