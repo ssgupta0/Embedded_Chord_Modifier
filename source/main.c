@@ -200,7 +200,7 @@ int main(void) {
 // 			PORTB &= 0xFE;
 // 		 }
 		
-		SM(&chord);
+		//SM(&chord);
 	    
 		setNotes(chord);
 		
