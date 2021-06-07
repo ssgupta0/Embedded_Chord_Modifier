@@ -136,6 +136,8 @@ void SM(struct chords *chord) {
 			
 		default:
 			break;
+			
+	}
 	
 }
 
@@ -157,7 +159,6 @@ int main(void) {
 	PWM_on1();
 	PWM_on2();
 	PWM_on3();
-    /* Insert your solution below */
 //  ------------------------
 // 	initialize C2maj Chord.
 //  ------------------------
@@ -200,7 +201,7 @@ int main(void) {
 // 			PORTB &= 0xFE;
 // 		 }
 		
-		//SM(&chord);
+		SM(&chord);
 	    
 		setNotes(chord);
 		
