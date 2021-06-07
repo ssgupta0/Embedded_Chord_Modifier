@@ -130,7 +130,7 @@ SM(struct chords *chord) {
 		break;
 			
 		case inc:
-			noteInc(&chord, 1);
+			noteInc(chord, 1);
 			break;
 			
 		default:
