@@ -90,7 +90,7 @@ void setNotes(struct chords chord) {
 enum states {init, inc, dec, reset, wait, decW, incW} state;
 
 void SM(struct chords *chord) {
-	unsigned short joy = ADC;
+	unsigned char joy = ADC/4;
 	
 	switch(state) {
 	
@@ -157,7 +157,7 @@ void SM(struct chords *chord) {
 			break;
 			
 	}
-	PORTC = (char)(joy/8);
+	PORTC = (char)(joy);
 }
 
 /**/
