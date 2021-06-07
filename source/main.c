@@ -78,7 +78,7 @@ void setNotes(struct chords chord) {
 
 int main(void) {
     /* Insert DDR and PORT initializations */
-	DDRA = 0x00; PORTA = 0xFF;	
+	//DDRA = 0x00; PORTA = 0xFF;	
 	DDRB = 0x48; PORTB = 0x00; 
 	DDRD = 0xA0; PORTD = 0x00; 
 	
@@ -135,7 +135,7 @@ int main(void) {
 // 			PORTB &= 0xFE;
 // 		}
 		
-	    	if(ADC>100) {
+	    	if(joy>1000) {
 			noteInc(&chord, 5);
 			PORTB |= 0x01;
 		}
