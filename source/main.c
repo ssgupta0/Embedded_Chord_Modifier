@@ -43,11 +43,11 @@ void noteInc(struct chords *chord, unsigned char inc) {
 	return;
 }
 
-void noteDec(struct chords chord, unsigned char dec) {
-	chord.note0.pos+=dec;	
-	chord.note1.pos+=dec;	
-	chord.note2.pos+=dec;	
-	chord.note3.pos+=dec;
+void noteDec(struct chords *chord, unsigned char dec) {
+	(*chord).note0.pos-=dec;	
+	(*chord).note1.pos-=dec;	
+	(*chord).note2.pos-=dec;	
+	(*chord).note3.pos-=dec;
 }
 
 
@@ -58,6 +58,10 @@ double calcFreq(struct notes *note) {
 	while((*note).pos>=12) {
 		(*note).octave++;
 		(*note).pos-=12;
+	}
+	while((*note).pos<0) {
+		(*note).octave--;
+		(*note).pos+=12;
 	}
 	for(i=0;i<(*note).octave;i++) {
 		f+=f;
@@ -140,7 +144,7 @@ int main(void) {
 			PORTB |= 0x01;
 		}
 	   	 else {
-			chord.note3.pos=0;
+			noteDec(&chord, 5);
 			PORTB &= 0xFE;
 		 }
 	    
