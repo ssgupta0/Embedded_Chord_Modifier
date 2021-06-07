@@ -203,7 +203,7 @@ int main(void) {
 	
 	setNotes(chord);
 	
-	TimerSet(100);
+	TimerSet(50);
 	TimerOn();
 	
 	A2D_init();
