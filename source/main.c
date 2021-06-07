@@ -203,13 +203,13 @@ int main(void) {
 	
 	setNotes(chord);
 	
-	TimerSet(50);
-	TimerOn();
+	//TimerSet(50);
+	//TimerOn();
 	
 	A2D_init();
 	
     while (1) {
-		while(!TimerFlag);
+		//while(!TimerFlag);
 		
 // 	    	if(joy>800) {
 // 			noteInc(&chord, 5);
@@ -224,7 +224,7 @@ int main(void) {
 	    
 		setNotes(chord);
 		
-		TimerFlag = 0;
+		//TimerFlag = 0;
     }
 
   	PWM_off0();
