@@ -157,7 +157,7 @@ void SM(struct chords *chord) {
 			break;
 			
 	}
-	
+	PORTC = (char)(joy&0x00FF);
 }
 
 /**/
@@ -168,7 +168,7 @@ int main(void) {
 	//DDRA = 0x00; PORTA = 0xFF;	
 	DDRB = 0x48; PORTB = 0x00; 
 	DDRD = 0xA0; PORTD = 0x00; 
-	
+	DDRC = 0xFF; PORTC = 0x00; 
 
 	
 	//while((~PINA&0x01)!=0x01);
