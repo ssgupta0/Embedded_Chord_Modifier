@@ -97,11 +97,11 @@ void SM(struct chords *chord) {
 	joy = ((joy&0xF0));
 	PORTC = (joy);
 	
-	if(abs(joy-oldJoy) < 40) {
-		return;
-	}
-	oldJoy=joy;
-	
+// 	if(abs(joy-oldJoy) < 40) {
+// 		return;
+// 	}
+// 	oldJoy=joy;
+	unsigned char tmpA = ((PINA&0xF0));
 	switch(state) {
 	
 		case init:
@@ -109,14 +109,14 @@ void SM(struct chords *chord) {
 			break;
 			
 		case wait:
-			if(joy>0xA0) {
-				state = wait;	
+			if(tmpA==0xF0) {
+				state = wait;
 			}
-			else if (joy > 0x40 && joy < 0x80 ) {
-				state = dec;	
+			else if (tmpA==0x90) {
+				state = dec;
 			}
-			else if (joy > 0x80 && joy < 0xA0) {
-				state = inc;
+			else if (joy<0) {
+				//state = inc;
 			}
 			break;
 		
@@ -128,7 +128,7 @@ void SM(struct chords *chord) {
 			break;
 			
 		case incW:
-			if(joy > 0x80 && joy < 0xA0 ) {
+			if(joy<0 ) {
 				state = incW;	
 			}
 			else {
@@ -137,7 +137,7 @@ void SM(struct chords *chord) {
 			break;
 		
 		case decW:
-			if(joy > 0x40 && joy < 0x80 ) {
+			if(tmpA==0x90 ) {
 				state = decW;	
 			}
 			else {
@@ -179,7 +179,7 @@ void SM(struct chords *chord) {
 
 int main(void) {
     /* Insert DDR and PORT initializations */
-	//DDRA = 0x00; PORTA = 0xFF;	
+	DDRA = 0x00; PORTA = 0xFF;	
 	DDRB = 0x48; PORTB = 0x00; 
 	DDRD = 0xA0; PORTD = 0x00; 
 	DDRC = 0xFF; PORTC = 0x00; 
