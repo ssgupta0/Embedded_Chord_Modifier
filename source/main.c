@@ -90,7 +90,7 @@ void setNotes(struct chords chord) {
 enum states {init, inc, dec, reset, wait, decW, incW, modulate} state;
 
 	unsigned char oldJoy=0;
-
+	unsigned char counter = 0;
 
 void SM(struct chords *chord) {
 	unsigned char joy = (ADC/4);
@@ -151,6 +151,24 @@ void SM(struct chords *chord) {
 			}
 			break;
 			
+		case modulate:
+			state = modW;
+			break;
+		
+		case modW:
+			if((~PIND)&0x02 == 0x02) {
+				state=modW;	
+			}
+			else {
+				state=wait;
+				if(counter>5) {
+					counter=0;
+				} else {
+				counter++;
+				}
+			}
+			break;
+			
 		case reset:
 		default:
 			state = init;
@@ -173,6 +191,29 @@ void SM(struct chords *chord) {
 			
 		case dec:
 			noteDec(chord, 1);
+			break;
+			
+		case modulate:
+			switch(counter){
+				case 1:
+					//6 inversion
+					(*chord).note1.octave++;
+					break;
+				case 2:
+					//minor chord
+					(*chord).note1.pos--;
+					break;
+				case 3:
+					//Drop inversion
+					(*chord).note3.octave--;
+					break;
+				case 4:
+					//Drop 6-3
+					(*chord).note1.octave--;
+					break;
+				default:
+					break;
+			}
 			break;
 			
 		default:
@@ -231,15 +272,6 @@ int main(void) {
 	
     while (1) {
 		//while(!TimerFlag);
-		
-// 	    	if(joy>800) {
-// 			noteInc(&chord, 5);
-// 			PORTB |= 0x01;
-// 		}
-// 	   	 else {
-// 			noteDec(&chord, 5);
-// 			PORTB &= 0xFE;
-// 		 }
 		
 		SM(&chord);
 	    
