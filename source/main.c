@@ -89,7 +89,7 @@ void setNotes(struct chords chord) {
 
 enum states {init, inc, dec, reset, wait} state;
 
-SM() {
+SM(struct chords *chord) {
 	unsigned short joy = ADC;
 	
 	switch(state) {
@@ -123,10 +123,10 @@ SM() {
 	switch(state) {
 	
 		case init:
-			chord.note0.pos=0;
-			chord.note1.pos=0;
-			chord.note2.pos=0;
-			chord.note3.pos=0;
+			(*chord).note0.pos=0;
+			(*chord).note1.pos=0;
+			(*chord).note2.pos=0;
+			(*chord).note3.pos=0;
 		break;
 			
 		case inc:
@@ -199,7 +199,7 @@ int main(void) {
 // 			PORTB &= 0xFE;
 // 		 }
 		
-		SM();
+		SM(&chord);
 	    
 		setNotes(chord);
 		
@@ -208,9 +208,11 @@ int main(void) {
 	
 	
 	
+	
+	
   	PWM_off0();
    	PWM_off1();
-    PWM_off2();
+  	PWM_off2();
    	PWM_off3();
     
 	return 1;
