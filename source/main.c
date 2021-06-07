@@ -157,7 +157,7 @@ void SM(struct chords *chord) {
 			break;
 			
 	}
-	PORTC = (char)(joy/1024);
+	PORTC = (char)(joy/8);
 }
 
 /**/
