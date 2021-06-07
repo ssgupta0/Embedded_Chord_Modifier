@@ -56,7 +56,7 @@ double calcFreq(struct notes *note) {
 	double f = freq[(*note).pos%12];
 	unsigned char i;
 	while((*note).pos>=12) {
-		if((*note).octave<6) {
+		if((*note).octave<5) {
 			(*note).octave++;
 		}
 		
@@ -125,9 +125,9 @@ void SM(struct chords *chord) {
 	
 		case init:
 			(*chord).note0.pos=0;
-			(*chord).note1.pos=0;
-			(*chord).note2.pos=0;
-			(*chord).note3.pos=0;
+			(*chord).note1.pos=4;
+			(*chord).note2.pos=7;
+			(*chord).note3.pos=12;
 		break;
 			
 		case inc:
