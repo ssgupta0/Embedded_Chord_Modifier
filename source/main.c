@@ -110,8 +110,9 @@ void SM(struct chords *chord) {
 			if(joy<300) {
 				state = wait;	
 			}
-			else 
+			else {
 				state = inc;
+			}
 			break;
 			
 		default:
