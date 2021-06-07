@@ -89,7 +89,7 @@ void setNotes(struct chords chord) {
 
 enum states {init, inc, dec, reset, wait} state;
 
-SM(struct chords *chord) {
+void SM(struct chords *chord) {
 	unsigned short joy = ADC;
 	
 	switch(state) {
@@ -205,11 +205,7 @@ int main(void) {
 		
 		TimerFlag = 0;
     }
-	
-	
-	
-	
-	
+
   	PWM_off0();
    	PWM_off1();
   	PWM_off2();
