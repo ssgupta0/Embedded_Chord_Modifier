@@ -192,7 +192,7 @@ int main(void) {
 	DDRC = 0xFF; PORTC = 0x00; 
 
 	
-	//while((~PINA&0x01)!=0x01);
+	while((~PIND&0x01)!=0x01);
 
 		
 	PWM_on0();
