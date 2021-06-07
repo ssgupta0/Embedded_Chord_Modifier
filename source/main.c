@@ -56,11 +56,17 @@ double calcFreq(struct notes *note) {
 	double f = freq[(*note).pos%12];
 	unsigned char i;
 	while((*note).pos>=12) {
-		(*note).octave++;
+		if((*note).octave<6) {
+			(*note).octave++;
+		}
+		
 		(*note).pos-=12;
 	}
 	while((*note).pos<0) {
-		(*note).octave--;
+		if((*note).octave>0) {
+			(*note).octave--;
+		}		
+		
 		(*note).pos+=12;
 	}
 	for(i=0;i<(*note).octave;i++) {
