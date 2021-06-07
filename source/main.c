@@ -135,7 +135,7 @@ int main(void) {
 // 			PORTB &= 0xFE;
 // 		}
 		
-	    	if(joy>1000) {
+	    	if(joy>100) {
 			noteInc(&chord, 5);
 			PORTB |= 0x01;
 		}
