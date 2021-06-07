@@ -183,7 +183,7 @@ void SM(struct chords *chord) {
 
 int main(void) {
     /* Insert DDR and PORT initializations */
-	DDRA = 0x03; PORTA = 0xFF;	
+	DDRA = 0x00; PORTA = 0xFC;	
 	DDRB = 0x48; PORTB = 0x00; 
 	DDRD = 0xA0; PORTD = 0x00; 
 	DDRC = 0xFF; PORTC = 0x00; 
