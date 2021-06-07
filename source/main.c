@@ -99,13 +99,13 @@ void SM(struct chords *chord) {
 			break;
 			
 		case wait:
-			if(joy > 0x80 ) {
+			if(joy > 0x80 && joy < 0xA0 ) {
 				state = inc;	
 			}
-			else if (joy>0x80) {
+			else if (joy > 0x40 && joy < 0x80 ) {
 				state = dec;	
 			}
-			else 
+			else if (joy)
 				state = wait;
 			break;
 		
@@ -117,7 +117,7 @@ void SM(struct chords *chord) {
 			break;
 			
 		case incW:
-			if(joy > 0x80) {
+			if(joy > 0x80 && joy < 0xA0 ) {
 				state = incW;	
 			}
 			else {
@@ -126,7 +126,7 @@ void SM(struct chords *chord) {
 			break;
 		
 		case decW:
-			if(joy>0x80) {
+			if(joy > 0x40 && joy < 0x80 ) {
 				state = decW;	
 			}
 			else {
