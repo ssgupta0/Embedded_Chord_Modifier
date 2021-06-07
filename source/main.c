@@ -83,24 +83,7 @@ void setNotes(struct chords chord) {
 }
 
 /**/
-	struct notes n0;
-		n0.pos = 0;
-		n0.octave = 1;
-	struct notes n1;
-		n1.pos = 4;
-		n1.octave = 1;
-	struct notes n2;
-		n2.pos = 7;
-		n2.octave = 1;
-	struct notes n3;
-		n3.pos = 0;
-		n3.octave=n0.octave+1;
-	
-	struct chords chord;
-		chord.note0 = n0;
-		chord.note1 = n1;
-		chord.note2 = n2;
-		chord.note3 = n3;
+
 
 /**/
 
@@ -178,7 +161,24 @@ int main(void) {
 // 	initialize C2maj Chord.
 //  ------------------------
 
-
+	struct notes n0;
+		n0.pos = 0;
+		n0.octave = 1;
+	struct notes n1;
+		n1.pos = 4;
+		n1.octave = 1;
+	struct notes n2;
+		n2.pos = 7;
+		n2.octave = 1;
+	struct notes n3;
+		n3.pos = 0;
+		n3.octave=n0.octave+1;
+	
+	struct chords chord;
+		chord.note0 = n0;
+		chord.note1 = n1;
+		chord.note2 = n2;
+		chord.note3 = n3;
 	
 	setNotes(chord);
 	
