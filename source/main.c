@@ -99,7 +99,7 @@ void SM(struct chords *chord) {
 			break;
 			
 		case wait:
-			if(joy>600) {
+			if(joy<300) {
 				state = inc;	
 			}
 			else 
@@ -107,7 +107,7 @@ void SM(struct chords *chord) {
 			break;
 			
 		case inc:
-			if(joy<300) {
+			if(joy>500) {
 				state = wait;	
 			}
 			else {
