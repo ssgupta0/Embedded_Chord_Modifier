@@ -90,8 +90,8 @@ void setNotes(struct chords chord) {
 enum states {init, inc, dec, reset, wait, decW, incW} state;
 
 void SM(struct chords *chord) {
-	unsigned short joy = (ADC/4);
-	joy = ((~joy)>>6);
+	unsigned short joy = (ADC);
+	joy = ((joy)>>4);
 	switch(state) {
 	
 		case init:
