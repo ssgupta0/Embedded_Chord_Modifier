@@ -39,9 +39,7 @@ void noteInc(struct chords *chord, unsigned char inc) {
 	(*chord).note0.pos+=inc;	
 	(*chord).note1.pos+=inc;	
 	(*chord).note2.pos+=inc;	
-	(*chord).note3.pos+=inc;
-	//TODO FIX +=
-	
+	(*chord).note3.pos+=inc;	
 	return;
 }
 
@@ -122,18 +120,30 @@ int main(void) {
 	TimerSet(1000);
 	TimerOn();
 	
+	A2D_init();
+	
     while (1) {
+	    unsigned short joy = ADC;
 		while(!TimerFlag);
-		if((~PINA&0x01)==0x01) {
+// 		if((~PINA&0x01)==0x01) {
+// 			noteInc(&chord, 5);
+// 			//chord.note3.pos=8;
+// 			PORTB |= 0x01;
+// 		}
+// 		else if((~PINA&0x02)==0x02) {
+// 			chord.note3.pos=0;
+// 			PORTB &= 0xFE;
+// 		}
+		
+	    	if(ADC>100) {
 			noteInc(&chord, 5);
-			//chord.note3.pos=8;
 			PORTB |= 0x01;
 		}
-		else if((~PINA&0x02)==0x02) {
+	   	 else {
 			chord.note3.pos=0;
 			PORTB &= 0xFE;
-		}
-		
+		 }
+	    
 		setNotes(chord);
 		
 		TimerFlag = 0;
