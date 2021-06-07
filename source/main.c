@@ -155,7 +155,7 @@ void SM(struct chords *chord) {
 			
 		case dec:
 			noteDec(chord, 1);
-			break
+			break;
 			
 		default:
 			break;
