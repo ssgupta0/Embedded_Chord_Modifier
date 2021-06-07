@@ -184,7 +184,7 @@ int main(void) {
 	
 	setNotes(chord);
 	
-	TimerSet(500);
+	TimerSet(100);
 	TimerOn();
 	
 	A2D_init();
