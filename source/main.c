@@ -109,13 +109,16 @@ void SM(struct chords *chord) {
 			break;
 			
 		case wait:
-			if((~PINA)&0x04 == 0x04) {
+			if((~PIND)&0x01 == 0x01) {
 				state=reset;	
+			}
+			else if((~PIND)&0x02 == 0x02) {
+				state=modulate;	
 			}
 			else if(tmpA==0x80) {
 				state = wait;
 			}
-			else if (tmpA==0xA0) {
+			else if (tmpA==0x04) {
 				state = dec;
 			}
 			else if (tmpA==0x40) {
