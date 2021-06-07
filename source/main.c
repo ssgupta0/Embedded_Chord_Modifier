@@ -87,7 +87,7 @@ void setNotes(struct chords chord) {
 
 /**/
 
-enum states {init, inc, dec, reset, wait, decW, incW, modulate} state;
+enum states {init, inc, dec, reset, wait, decW, incW, modulate, modW} state;
 
 	unsigned char oldJoy=0;
 	unsigned char counter = 0;
@@ -109,10 +109,10 @@ void SM(struct chords *chord) {
 			break;
 			
 		case wait:
-			if((~PIND)&0x01 == 0x01) {
+			if((~PIND&0x01) == 0x01) {
 				state=reset;	
 			}
-			else if((~PIND)&0x02 == 0x02) {
+			else if((~PIND&0x02) == 0x02) {
 				state=modulate;	
 			}
 			else if(tmpA==0x80) {
@@ -156,7 +156,7 @@ void SM(struct chords *chord) {
 			break;
 		
 		case modW:
-			if((~PIND)&0x02 == 0x02) {
+			if((~PIND&0x02) == 0x02) {
 				state=modW;	
 			}
 			else {
