@@ -87,7 +87,7 @@ void setNotes(struct chords chord) {
 
 /**/
 
-enum states {init, inc, dec, reset, wait, decW, incW} state;
+enum states {init, inc, dec, reset, wait, decW, incW, modulate} state;
 
 	unsigned char oldJoy=0;
 
@@ -115,8 +115,8 @@ void SM(struct chords *chord) {
 			else if(tmpA==0x80) {
 				state = wait;
 			}
-			else if (tmpA==0x90) {
-				//state = dec;
+			else if (tmpA==0xA0) {
+				state = dec;
 			}
 			else if (tmpA==0x40) {
 				state = inc;
@@ -140,7 +140,7 @@ void SM(struct chords *chord) {
 			break;
 		
 		case decW:
-			if(tmpA==0x90) {
+			if(tmpA==0xA0) {
 				state = decW;	
 			}
 			else {
@@ -185,7 +185,7 @@ int main(void) {
     /* Insert DDR and PORT initializations */
 	DDRA = 0x00; PORTA = 0xFC;	
 	DDRB = 0x48; PORTB = 0x00; 
-	DDRD = 0xA0; PORTD = 0x00; 
+	DDRD = 0xA0; PORTD = 0x0F; 
 	DDRC = 0xFF; PORTC = 0x00; 
 
 	
