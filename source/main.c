@@ -110,20 +110,20 @@ void SM(struct chords *chord) {
 			break;
 			
 		case inc:
-			if(joy>500) {
-				state = wait;	
+			if(joy<300) {
+				state = inc;	
 			}
 			else {
-				state = inc;
+				state = wait;
 			}
 			break;
 		
 		case dec:
-			if(joy<500) {
-				state = wait;	
+			if(joy>800) {
+				state = dec;	
 			}
 			else {
-				state = dec;
+				state = wait;
 			}
 			break;
 			
