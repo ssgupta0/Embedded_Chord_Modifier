@@ -82,6 +82,78 @@ void setNotes(struct chords chord) {
 	set_PWM3(calcFreq(&(chord.note3)));
 }
 
+/**/
+	struct notes n0;
+		n0.pos = 0;
+		n0.octave = 1;
+	struct notes n1;
+		n1.pos = 4;
+		n1.octave = 1;
+	struct notes n2;
+		n2.pos = 7;
+		n2.octave = 1;
+	struct notes n3;
+		n3.pos = 0;
+		n3.octave=n0.octave+1;
+	
+	struct chords chord;
+		chord.note0 = n0;
+		chord.note1 = n1;
+		chord.note2 = n2;
+		chord.note3 = n3;
+
+/**/
+
+enum states {init, inc, dec, reset, wait} state;
+
+SM() {
+	unsigned short joy = ADC;
+	
+	switch(state) {
+	
+		case init:
+			state = wait;
+			break;
+			
+		case wait:
+			if(joy>600) {
+				state = inc;	
+			}
+			else 
+				state = wait;
+			break;
+			
+		case inc:
+			if(joy<300) {
+				state = wait;	
+			}
+			else 
+				state = inc;
+			break;
+			
+		default:
+			state = init;
+			break;
+	}
+	
+	
+	switch(state) {
+	
+		case init:
+			chord.note0.pos=0;
+			chord.note1.pos=0;
+			chord.note2.pos=0;
+			chord.note3.pos=0;
+		break;
+			
+		case inc:
+			noteInc(&chord, 1);
+			break;
+			
+		default:
+			break;
+	
+}
 
 /**/
 
@@ -106,24 +178,7 @@ int main(void) {
 // 	initialize C2maj Chord.
 //  ------------------------
 
-	struct notes n0;
-		n0.pos = 0;
-		n0.octave = 1;
-	struct notes n1;
-		n1.pos = 4;
-		n1.octave = 1;
-	struct notes n2;
-		n2.pos = 7;
-		n2.octave = 1;
-	struct notes n3;
-		n3.pos = 0;
-		n3.octave=n0.octave+1;
-	
-	struct chords chord;
-		chord.note0 = n0;
-		chord.note1 = n1;
-		chord.note2 = n2;
-		chord.note3 = n3;
+
 	
 	setNotes(chord);
 	
@@ -133,26 +188,18 @@ int main(void) {
 	A2D_init();
 	
     while (1) {
-	    unsigned short joy = ADC;
 		while(!TimerFlag);
-// 		if((~PINA&0x01)==0x01) {
+		
+// 	    	if(joy>800) {
 // 			noteInc(&chord, 5);
-// 			//chord.note3.pos=8;
 // 			PORTB |= 0x01;
 // 		}
-// 		else if((~PINA&0x02)==0x02) {
-// 			chord.note3.pos=0;
+// 	   	 else {
+// 			noteDec(&chord, 5);
 // 			PORTB &= 0xFE;
-// 		}
+// 		 }
 		
-	    	if(joy>800) {
-			noteInc(&chord, 5);
-			PORTB |= 0x01;
-		}
-	   	 else {
-			noteDec(&chord, 5);
-			PORTB &= 0xFE;
-		 }
+		SM();
 	    
 		setNotes(chord);
 		
@@ -163,7 +210,7 @@ int main(void) {
 	
   	PWM_off0();
    	PWM_off1();
-    	PWM_off2();
+    PWM_off2();
    	PWM_off3();
     
 	return 1;
