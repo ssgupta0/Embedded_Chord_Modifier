@@ -96,10 +96,10 @@ void SM(struct chords *chord) {
 	unsigned char joy = (ADC/4);
 	joy = ((joy&0xF0));
 	
-	if(abs(joy-oldJoy) < 100) {
+	if(abs(joy-oldJoy) < 40) {
 		return;
 	}
-	
+	oldJoy=joy;
 	
 	switch(state) {
 	
