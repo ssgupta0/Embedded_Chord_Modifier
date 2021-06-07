@@ -91,7 +91,7 @@ enum states {init, inc, dec, reset, wait, decW, incW} state;
 
 void SM(struct chords *chord) {
 	unsigned char joy = (ADC/4);
-	joy = ((joy));
+	joy = ((joy&0xF0));
 	switch(state) {
 	
 		case init:
